@@ -13,14 +13,16 @@ export class PersonDetailsComponent {
   constructor(public service: PersonDetailService, private toastr: ToastrService) {
   }
 
-  ngOnInit():void {
+  ngOnInit(): void {
+    //metodo que llama al api para actualizar la lista
     this.service.refreshList();
   }
-
+  //Llenado de tabla
   populateForm(selectedRecord: PersonDetail){
     this.service.formData = Object.assign({}, selectedRecord);
   }
 
+  //llamado al delete del api 
   onDelete(id : number){
     if(confirm('Are you sure to delete this record?')){
       this.service.DeletePersonDetail(id)

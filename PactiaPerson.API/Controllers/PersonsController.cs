@@ -9,6 +9,7 @@ namespace PactiaPerson.API.Controllers
     [Route("api/[controller]")]
     public class PersonsController : ControllerBase
     {
+        //inyeccion de dependencias
         private readonly DataContext _context;
 
         public PersonsController(DataContext context)
@@ -16,23 +17,14 @@ namespace PactiaPerson.API.Controllers
             _context = context;
         }
 
+        //metodo get para traer la lista de personas
         [HttpGet]
         public async Task<ActionResult> GetAsync()
         {
             return Ok(await _context.Persons.ToListAsync());
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult> GetAsync(int id)
-        {
-            var person = await _context.Persons.FirstOrDefaultAsync(x => x.Id == id);
-            if (person == null)
-            {
-                return NotFound();
-            }
-            return Ok(person);
-        }
-
+        //metodo post para crear un usuario
         [HttpPost]
         public async Task<ActionResult> PostAsync(Person person)
         {
@@ -41,6 +33,7 @@ namespace PactiaPerson.API.Controllers
             return Ok(await _context.Persons.ToListAsync());
         }
 
+        //metodo put para actualizar un usuario
         [HttpPut]
         public async Task<ActionResult> PutAsync(Person person)
         {
@@ -49,6 +42,7 @@ namespace PactiaPerson.API.Controllers
             return Ok(await _context.Persons.ToListAsync());
         }
 
+        //metodo delete para borrar un usuario
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteAsync(int id)
         {

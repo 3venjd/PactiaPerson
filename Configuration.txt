@@ -1,0 +1,3 @@
+PactiaPerson.API/appsettings.json/ variable SQLConnection cambiar a la instancia de bd que se tenga para que se inyecte en todo el proyecto
+
+PactiaPerson.Web/src/environments/ enviroment.ts cambiar la ruta del api en caso de que sea necesario

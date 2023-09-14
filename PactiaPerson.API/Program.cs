@@ -8,7 +8,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//Inyeccion de dependencias
+//conexion a la bd 
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer("name=SQLConnection"));
 
 var app = builder.Build();

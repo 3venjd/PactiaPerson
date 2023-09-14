@@ -11,11 +11,13 @@ import { PersonDetailService } from 'src/app/shared/person-detail.service';
 })
 export class PersonDetailFormComponent implements OnInit {
 
+  //se llama a la entidad y al servicio de toastr para usar los pop up
   constructor(public service: PersonDetailService, private toastr: ToastrService) { }
 
   ngOnInit() {
   }
 
+  //ejecucion del boton submit para crear o editar un usuario
   onSubmit(form:NgForm){
     this.service.formSubmitted = true;
     if(form.valid){
@@ -27,7 +29,7 @@ export class PersonDetailFormComponent implements OnInit {
       }
     } 
   }
-
+  //metodo para insertar un usuario nuevo
   insertRecord(form: NgForm){
     this.service.postPersonDetail()
       .subscribe({
@@ -39,7 +41,7 @@ export class PersonDetailFormComponent implements OnInit {
           error: err => this.toastr.error('Usuario no valido', 'Persona no valida')
       })
   }
-
+  //metodo para actualizar un usuario seleccionado
   UpdatetRecord(form: NgForm){
     this.service.putPersonDetail()
       .subscribe({

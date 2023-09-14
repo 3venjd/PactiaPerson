@@ -1,4 +1,0 @@
-npm install -g ng-openapi-gen
-
-go to folder app and execute this
-ng-openapi-gen --input APISchema/schema.json --output src/app/api

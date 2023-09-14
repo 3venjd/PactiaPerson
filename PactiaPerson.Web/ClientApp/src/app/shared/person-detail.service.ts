@@ -13,7 +13,9 @@ export class PersonDetailService {
 url:string = environment.apiBaseUrl
 ListPersons : PersonDetail[] = []
 formData : PersonDetail = new PersonDetail()
-formSubmitted: boolean = false;
+  formSubmitted: boolean = false;
+
+  //Llamado a la api para acceder a la bd
 constructor(private http: HttpClient) { }
   refreshList(){
     this.http.get(this.url)

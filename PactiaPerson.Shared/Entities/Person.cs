@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace PactiaPerson.Shared.Entities
 {
+    //Capa de dominio para generar las entidades
     public class Person
     {
         public int Id { get; set; }
