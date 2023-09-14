@@ -36,7 +36,7 @@ export class PersonDetailFormComponent implements OnInit {
             this.service.resetForm(form)
             this.toastr.success('Agregado exitosamente', 'Resgitro Persona');
           },
-          error: err => {console.log(err)}
+          error: err => this.toastr.error('Usuario no valido', 'Persona no valida')
       })
   }
 
