@@ -1,3 +1,5 @@
-PactiaPerson.API/appsettings.json/ variable SQLConnection cambiar a la instancia de bd que se tenga para que se inyecte en todo el proyecto
+- PactiaPerson.API/appsettings.json/ variable SQLConnection cambiar a la instancia de bd que se tenga para que se inyecte en todo el proyecto
 
-PactiaPerson.Web/src/environments/ enviroment.ts cambiar la ruta del api en caso de que sea necesario
+- PactiaPerson.Web/src/environments/ enviroment.ts cambiar la ruta del api en caso de que sea necesario
+
+- se debe iniciar primero el API y luego el Angular para tener el funcionamiento de la aplicacion
