@@ -1,0 +1,21 @@
+
+<div class="row mt-5">
+    <div class="col-6">
+        <app-person-detail-form/>
+    </div>
+    <div class="col-6">
+        <h6>Selecciona la persona que quieres editar</h6>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-start mb-2 border px-4 py-3 rounded-3" *ngFor="let person of service.ListPersons">
+                <div class="flex-grow-1 mouse-hover" (click)="populateForm(person)">
+                    <div class="fw-bold">{{person.cedula}} </div>
+                    <div>{{person.nombre}} {{person.apellido}}</div>
+                </div>
+                <span class="text-scondary">
+                    <i class="fa-regular fa-trash-can fa-lg mouse-hover" (click)="onDelete(person.id)"></i>
+                </span>
+            </li>
+        </ul>
+    </div>
+    
+</div>

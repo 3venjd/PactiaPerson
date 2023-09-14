@@ -1,0 +1,15 @@
+<form #form="ngForm" (submit)="onSubmit(form)" [class.submitted] ="service.formSubmitted" novalidate autocomplete="off">
+  <input type="hidden" name="id"  [value]="service.formData.id">
+  <div class="mb-3">
+    <input class="form-control form-control-lg" placeholder="Cedula" #CedulaPersona = "ngModel" name="cedula" [(ngModel)]="service.formData.cedula" required maxlength="10">
+    <br>
+    <input class="form-control form-control-lg" placeholder="Nombre" #NombrePersona = "ngModel" name="nombre" [(ngModel)]="service.formData.nombre" required maxlength="100">
+    <br>
+    <input class="form-control form-control-lg" placeholder="Apellido" #ApellidoPersona = "ngModel" name="apellido" [(ngModel)]="service.formData.apellido" required maxlength="100">
+  </div>
+  <div class="d-grid">
+    <button class="btn btn-lg btn-success" type="submit">
+      Ejecutar
+    </button>
+  </div>
+</form>
