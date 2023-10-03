@@ -1,5 +1,6 @@
-using Microsoft.EntityFrameworkCore;
 using PactiaPerson.API.Data;
+using PactiaPerson.API.Services;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,14 +10,31 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //conexion a la bd 
-builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer("name=SQLConnection"));
+//builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer("name=SQLConnection"));
+
 
 //inicializador del seeder
-builder.Services.AddTransient<SeedDb>();
+//builder.Services.AddTransient<SeedDb>();
+
+
+
+var url = builder.Configuration.GetValue<string>("FirebaseData:baseUrl");
+var auth = builder.Configuration["FirebaseData:keyAuth"];
+
+using HttpClient client = new HttpClient();
+
+client.BaseAddress = new Uri(url!);
+client.DefaultRequestHeaders.Add("auth", auth);
+
+
+builder.Services.AddSingleton(
+    sp => client);
+
+builder.Services.AddScoped<IFirebaseApiConsume, FirebaseApiConsume>();
 
 var app = builder.Build();
 
-SeedData(app);
+//SeedData(app);
 
 //debido a que no se puede inyectar por constructor debemos crear el metodo para implementar el seeder
 void SeedData(WebApplication app)

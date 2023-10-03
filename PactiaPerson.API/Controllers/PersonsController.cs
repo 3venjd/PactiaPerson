@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using PactiaPerson.API.Data;
+using PactiaPerson.API.Services;
 using PactiaPerson.Shared.Entities;
+
 
 namespace PactiaPerson.API.Controllers
 {
@@ -9,51 +9,37 @@ namespace PactiaPerson.API.Controllers
     [Route("api/[controller]")]
     public class PersonsController : ControllerBase
     {
-        //inyeccion de dependencias
-        private readonly DataContext _context;
+        private readonly IFirebaseApiConsume _context;
 
-        public PersonsController(DataContext context)
+        public PersonsController(IFirebaseApiConsume context)
         {
             _context = context;
         }
 
         //metodo get para traer la lista de personas
         [HttpGet]
-        public async Task<ActionResult> GetAsync()
-        {
-            return Ok(await _context.Persons.ToListAsync());
-        }
+        public async Task<ActionResult> GetAsync() => Ok(await _context.GetAllRecordsAsync());
 
+        
         //metodo post para crear un usuario
         [HttpPost]
         public async Task<ActionResult> PostAsync(Person person)
         {
-            _context.Add(person);
-            await _context.SaveChangesAsync();
-            return Ok(await _context.Persons.ToListAsync());
+            return Ok(await _context.AddRecordAsync(person, person.Id));
         }
 
         //metodo put para actualizar un usuario
         [HttpPut]
         public async Task<ActionResult> PutAsync(Person person)
         {
-            _context.Update(person);
-            await _context.SaveChangesAsync();
-            return Ok(await _context.Persons.ToListAsync());
+            return Ok(await _context.UpdateRecordAsync(person, person.Id));
         }
 
         //metodo delete para borrar un usuario
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteAsync(int id)
         {
-            var person = await _context.Persons.FirstOrDefaultAsync(x => x.Id == id);
-            if (person == null)
-            {
-                return NotFound();
-            }
-            _context.Remove(person);
-            await _context.SaveChangesAsync();
-            return Ok(await _context.Persons.ToListAsync());
+            return Ok(await _context.DeleteRecordAsync<string>(id));
         }
     }
 }
