@@ -28,7 +28,16 @@ export class PersonDetailsComponent {
       this.service.DeletePersonDetail(id)
       .subscribe({
         next: res => {
-          this.service.ListPersons = res as PersonDetail[];
+
+          let result = res as PersonDetail[]
+            this.service.ListPersons = []
+            result.forEach(element => {
+                if(element !== null){
+                  this.service.ListPersons.push(element)
+                }
+            });
+
+          //this.service.ListPersons = res as PersonDetail[];
           this.toastr.error('Deleted Successfully', 'Person Detail')
         }
       })

@@ -24,10 +24,10 @@ namespace PactiaPerson.API.Data
         {
             if(!_context.Persons.Any()) 
             {
-                _context.Persons.Add(new Person { Cedula = "9034543468", Nombre = "Enrique", Apellido = "Benitez" });
-                _context.Persons.Add(new Person { Cedula = "7834562309", Nombre = "Camila", Apellido = "Ordoñez" });
-                _context.Persons.Add(new Person { Cedula = "2145358725", Nombre = "Lorena", Apellido = "Moncada" });
-                _context.Persons.Add(new Person { Cedula = "1739347653", Nombre = "JR", Apellido = "Lopez" });
+                _context.Persons.Add(new Person { cedula = "9034543468", nombre = "Enrique", apellido = "Benitez" });
+                _context.Persons.Add(new Person { cedula = "7834562309", nombre = "Camila", apellido = "Ordoñez" });
+                _context.Persons.Add(new Person { cedula = "2145358725", nombre = "Lorena", apellido = "Moncada" });
+                _context.Persons.Add(new Person { cedula = "1739347653", nombre = "JR", apellido = "Lopez" });
                 await _context.SaveChangesAsync();
             }
         }

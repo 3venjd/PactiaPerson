@@ -19,7 +19,7 @@ namespace PactiaPerson.API.Data
             base.OnModelCreating(modelBuilder);
 
             //validación de cedula unica
-            modelBuilder.Entity<Person>().HasIndex(x => x.Cedula).IsUnique();
+            modelBuilder.Entity<Person>().HasIndex(x => x.cedula).IsUnique();
         }
     }
 }

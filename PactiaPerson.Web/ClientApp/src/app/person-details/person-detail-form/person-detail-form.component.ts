@@ -21,7 +21,7 @@ export class PersonDetailFormComponent implements OnInit {
   onSubmit(form:NgForm){
     this.service.formSubmitted = true;
     if(form.valid){
-      if(this.service.formData.id == 0){
+      if(this.service.formData.id == -1){
         this.insertRecord(form)
       }
       else{
@@ -34,7 +34,18 @@ export class PersonDetailFormComponent implements OnInit {
     this.service.postPersonDetail()
       .subscribe({
           next: res =>{
-            this.service.ListPersons = res as PersonDetail[]  
+            console.log('response in insert -->' + res)
+
+            let result = res as PersonDetail[]
+            this.service.ListPersons = []
+            result.forEach(element => {
+                if(element !== null){
+                  this.service.ListPersons.push(element)
+                }
+            });
+
+            //this.service.ListPersons = res as PersonDetail[] 
+             
             this.service.resetForm(form)
             this.toastr.success('Agregado exitosamente', 'Resgitro Persona');
           },
@@ -46,7 +57,16 @@ export class PersonDetailFormComponent implements OnInit {
     this.service.putPersonDetail()
       .subscribe({
           next: res =>{
-            this.service.ListPersons = res as PersonDetail[]  
+
+            let result = res as PersonDetail[];
+            this.service.ListPersons = [];
+            result.forEach(element => {
+                if(element !== null){
+                  this.service.ListPersons.push(element)
+                }
+            });
+
+            //this.service.ListPersons = res as PersonDetail[]  
             this.service.resetForm(form)
             this.toastr.info('Actualizado exitosamente', 'Resgitro Persona');
           },

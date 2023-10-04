@@ -13,7 +13,7 @@ export class PersonDetailService {
 url:string = environment.apiBaseUrl
 ListPersons : PersonDetail[] = []
 formData : PersonDetail = new PersonDetail()
-  formSubmitted: boolean = false;
+formSubmitted: boolean = false;
 
   //Llamado a la api para acceder a la bd
 constructor(private http: HttpClient) { }
@@ -22,8 +22,12 @@ constructor(private http: HttpClient) { }
       .subscribe(
         {
           next: res => {
-            //console.log(res);
-            this.ListPersons = res as PersonDetail[]
+            let result = res as PersonDetail[]
+            result.forEach(element => {
+                if(element !== null){
+                  this.ListPersons.push(element)
+                }
+            });
           },
           error: err => {console.log(err)}
         }

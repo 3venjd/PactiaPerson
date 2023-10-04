@@ -2,9 +2,9 @@
 {
     public interface IFirebaseApiConsume
     {
-        Task<string> GetAllRecordsAsync();
+        Task<List<T>> GetAllRecordsAsync<T>();
 
-        Task<string> GetRecordAsync<T>(int id);
+        Task<T> GetRecordAsync<T>(int id);
 
         Task<string> AddRecordAsync<T>(T record, int id);
 

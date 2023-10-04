@@ -1,5 +1,5 @@
 <form #form="ngForm" (submit)="onSubmit(form)" [class.submitted] ="service.formSubmitted" novalidate autocomplete="off">
-  <input type="hidden" name="id"  [value]="service.formData.id">
+  <input hidden="false" name="id"  [value]="service.formData.id">
   <div class="mb-3">
     <input class="form-control form-control-lg" placeholder="Cedula" #CedulaPersona = "ngModel" name="cedula" [(ngModel)]="service.formData.cedula" required maxlength="10">
     <br>

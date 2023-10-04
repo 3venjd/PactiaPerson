@@ -1,5 +1,5 @@
 export class PersonDetail {
-    id: number = 0;
+    id: number = -1;
     cedula: string = ""; 
     nombre: string = "";
     apellido: string = ""; 
